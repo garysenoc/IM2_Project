@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
-
+from tables import UserTable
 # Create your views here.
 
 class StudentIndexView(View):
@@ -19,3 +19,7 @@ def register(request):
     return render(request,'register.html',{'title':'register'})
 def contact(request):
     return render(request,'contact.html',{'title':'contact'})
+
+def dashboard(request):
+    users = UserTable()
+    return render(request,'dashboard.html',{'user':users})

@@ -13,5 +13,7 @@ urlpatterns = [
     path('signin/', views.signin,name='booking-signin'),
     path('register/', views.register,name='booking-register'),
     path('about/',views.about,name='booking-about'),
-    path('contact/',views.contact,name='booking-contact')
+    path('contact/',views.contact,name='booking-contact'),
+    path('about/',views.about,name='booking-about'),
+    path('dashboard/',views.dashboard,name='booking-dashboard')
 ]
