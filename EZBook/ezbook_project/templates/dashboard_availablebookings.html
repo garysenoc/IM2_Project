@@ -36,7 +36,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li >
               <a href="./">Users<span class="sr-only">(current)</span></a>
             </li>
             <li><a href="./companies">Companies</a></li>
@@ -44,7 +44,7 @@
             <li><a href="./vehicle">Vehicle</a></li>
             <li><a href="./travel">Travel Places</a></li>
             <li><a href="./bookings">Bookings</a></li>
-            <li><a href="./available_bookings">Available Bookings</a></li>
+            <li class="active"><a href="./available_bookings">Available Bookings</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
@@ -74,34 +74,26 @@
               <thead>
                 <th><input type="checkbox" id="checkall" /></th>
                 <th>ID</th>
-                <th>User Pic</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Firstname</th>
-                <th>Middlename</th>
-                <th>Lastname</th>
-                <th>Age</th>
-                <th>Phone number</th>
-                <th>Email</th>
-                <th>Date Created</th>
+                <th>Available Travel Date</th>
+                <th>Available Travel Time</th>
+                <th>Company ID</th>
+                <th>Place From</th>
+                <th>Place To</th>
+                <th>Vehicle ID</th>
               </thead>
               <tbody>
-                {% for user in users %}
+                {% for available_booking in available_bookings %}
                 <tr>
                   <td><input type="checkbox" class="checkthis" /></td>
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.user_pic }}</td>
-                  <td>{{ user.username }}</td>
-                  <td>{{ user.password }}</td>
-                  <td>{{ user.firstname }}</td>
-                  <td>{{ user.middlename }}</td>
-                  <td>{{ user.lastname }}</td>
-                  <td>{{ user.age }}</td>
-                  <td>{{ user.phone_number }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.date_created }}</td>
-
-                  <!-- <td>
+                  <td>{{ available_booking.id }}</td>
+                  <td>{{ available_booking.available_travel_date }}</td>
+                  <td>{{ available_booking.available_travel_time }}</td>
+                  <td>{{ available_booking.company_id }}</td>
+                  <td>{{ available_booking.place_from_id }}</td>
+                  <td>{{ available_booking.place_to_id }}</td>
+                  <td>{{ available_booking.vehicle_id_id }}</td>
+<!-- 
+                  <td>
                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                       <a
                         href="/edit/{{ user.id }}"
@@ -137,7 +129,6 @@
         </div>
       </div>
     </div>
-    <input type="text" value="{{users}}" id="">
     <script>
 $(document).ready(function() {
     $('#bootstrapdatatable').DataTable({     

@@ -15,5 +15,11 @@ urlpatterns = [
     path('about/',views.about,name='booking-about'),
     path('contact/',views.contact,name='booking-contact'),
     path('about/',views.about,name='booking-about'),
-    path('dashboard/',views.dashboard,name='booking-dashboard')
+    path('dashboard/',views.dashboard,name='booking-dashboard'),
+    path('dashboard/companies',views.dashboard_company,name='dashboard-companies'),
+    path('dashboard/drivers',views.dashboard_driver,name='dashboard-driver'),
+    path('dashboard/vehicle',views.dashboard_vehicle,name='dashboard-vehicle'),
+    path('dashboard/travel',views.dashboard_travelplaces,name='dashboard-travel'),
+    path('dashboard/bookings',views.dashboard_booking,name='dashboard-booking'),
+    path('dashboard/available_bookings',views.dashboard_booktravel,name='dashboard-available_bookings'),
 ]

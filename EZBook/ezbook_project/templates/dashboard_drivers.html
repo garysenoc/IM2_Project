@@ -36,11 +36,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li >
               <a href="./">Users<span class="sr-only">(current)</span></a>
             </li>
-            <li><a href="./companies">Companies</a></li>
-            <li><a href="./drivers">Drivers</a></li>
+            <li ><a href="./companies">Companies</a></li>
+            <li class="active"><a href="./drivers">Drivers</a></li>
             <li><a href="./vehicle">Vehicle</a></li>
             <li><a href="./travel">Travel Places</a></li>
             <li><a href="./bookings">Bookings</a></li>
@@ -60,7 +60,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Users</h1>
+          <h1>Drivers</h1>
           <br />
           <!-- <span
             ><a href="/addnew" class="btn btn-primary">Add New Record</a></span
@@ -74,37 +74,22 @@
               <thead>
                 <th><input type="checkbox" id="checkall" /></th>
                 <th>ID</th>
-                <th>User Pic</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Firstname</th>
-                <th>Middlename</th>
-                <th>Lastname</th>
-                <th>Age</th>
-                <th>Phone number</th>
-                <th>Email</th>
-                <th>Date Created</th>
+                <th>Driver Pic</th>
+                <th>Driver Fullname</th>
+                <th>Company ID</th>
               </thead>
               <tbody>
-                {% for user in users %}
+                {% for driver in drivers %}
                 <tr>
                   <td><input type="checkbox" class="checkthis" /></td>
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.user_pic }}</td>
-                  <td>{{ user.username }}</td>
-                  <td>{{ user.password }}</td>
-                  <td>{{ user.firstname }}</td>
-                  <td>{{ user.middlename }}</td>
-                  <td>{{ user.lastname }}</td>
-                  <td>{{ user.age }}</td>
-                  <td>{{ user.phone_number }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.date_created }}</td>
-
-                  <!-- <td>
+                  <td>{{ driver.id }}</td>
+                  <td>{{ driver.driver_pic }}</td>
+                  <td>{{ driver.fullname }}</td>
+                  <td>{{ driver.company_name_id }}</td>
+                  <td>
                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                       <a
-                        href="/edit/{{ user.id }}"
+                        href="/edit/{{ driver.id }}"
                         class="btn btn-primary btn-xs"
                         data-title="Edit"
                         data-toggle="modal"
@@ -120,7 +105,7 @@
                       title="Delete"
                     >
                       <a
-                        href="/delete/{{ user.id }}"
+                        href="/delete/{{ driver.id }}"
                         class="btn btn-danger btn-xs"
                         data-title="Delete"
                         data-toggle="modal"
@@ -128,7 +113,7 @@
                         ><span class="glyphicon glyphicon-trash"></span
                       ></a>
                     </p>
-                  </td> -->
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -137,7 +122,6 @@
         </div>
       </div>
     </div>
-    <input type="text" value="{{users}}" id="">
     <script>
 $(document).ready(function() {
     $('#bootstrapdatatable').DataTable({     
