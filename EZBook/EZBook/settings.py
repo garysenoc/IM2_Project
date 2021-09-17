@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ezbook_project',
-    'table',
-     'datatableview',
 ]
 
 MIDDLEWARE = [
