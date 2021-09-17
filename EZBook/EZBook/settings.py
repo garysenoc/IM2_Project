@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'EZBook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_ezbook',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'heroku_edd82c657812381',
+        'USER': 'ba7c6451c71c2c',
+        'PASSWORD': '286a680d',
+        'HOST': 'us-cdbr-east-04.cleardb.com',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
