@@ -22,11 +22,13 @@ class Company(models.Model):
     email = models.EmailField()
     phone_number = models.CharField(max_length=100,default='',null=False)
     company_pic = models.CharField(max_length=100,default='',null=False)
+     
 
 class Driver(models.Model):
     driver_pic = models.CharField(max_length=100,default='',null=False)
     driver_fullname = models.CharField(max_length=100,default='',null=False)
     company_name = models.ForeignKey(Company, on_delete = models.CASCADE)
+
 
 
 class Vehicle(models.Model):
@@ -50,11 +52,14 @@ class BookTravel(models.Model):
     available_travel_time = models.TimeField()
     company = models.ForeignKey(Company, on_delete = models.CASCADE)
 
+
 class Booking(models.Model):
     booking_date = models.DateField()
     seat_number = models.IntegerField()
     user_travel_id = models.ForeignKey(User, on_delete = models.CASCADE)
     book_travel_id = models.ForeignKey(BookTravel, on_delete = models.CASCADE)
+
+    
 
 
 

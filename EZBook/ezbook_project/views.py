@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import View, TemplateView
-from tables import UserTable
+from django.views.generic import View
+from ezbook_project.models import User
+
 # Create your views here.
 
 class StudentIndexView(View):
@@ -21,5 +22,5 @@ def contact(request):
     return render(request,'contact.html',{'title':'contact'})
 
 def dashboard(request):
-    users = UserTable()
-    return render(request,'dashboard.html',{'user':users})
+    users = User.objects.all()
+    return render(request,'dashboard.html',{'users':users})
