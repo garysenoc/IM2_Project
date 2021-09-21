@@ -4,7 +4,8 @@ from django.db import models
 
 
 class User(models.Model):
-    user_pic = models.CharField(max_length=100, default='', null=False)
+    user_pic = models.CharField(
+        max_length=100, default='noimage.png', null=False)
     username = models.CharField(max_length=100, default='', null=False)
     password = models.CharField(max_length=100, default='', null=False)
     firstname = models.CharField(max_length=100, default='', null=False)
@@ -23,11 +24,13 @@ class Company(models.Model):
     date_created = models.DateField()
     email = models.EmailField()
     phone_number = models.CharField(max_length=100, default='', null=False)
-    company_pic = models.CharField(max_length=100, default='', null=False)
+    company_pic = models.CharField(
+        max_length=100, default='noimage.png', null=False)
 
 
 class Driver(models.Model):
-    driver_pic = models.CharField(max_length=100, default='', null=False)
+    driver_pic = models.CharField(
+        max_length=100, default='noimage.png', null=False)
     driver_fullname = models.CharField(max_length=100, default='', null=False)
     company_name = models.ForeignKey(Company, on_delete=models.CASCADE)
 
@@ -38,7 +41,8 @@ class Vehicle(models.Model):
     vehicle_driver_id = models.ForeignKey(Driver, on_delete=models.CASCADE)
     vehicle_capacity = models.IntegerField()
     vehicle_type = models.CharField(max_length=100, default='', null=False)
-    vehicle_pic = models.CharField(max_length=100, default='', null=False)
+    vehicle_pic = models.CharField(
+        max_length=100, default='noimage.png', null=False)
 
 
 class Travel_Places(models.Model):
