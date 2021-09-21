@@ -20,6 +20,12 @@ urlpatterns = [
         path('', admin_views.dashboard),
         path('tables/', include([
             path('users', admin_views.users),
+            path('companies', admin_views.companies),
+            path('drivers', admin_views.drivers),
+            path('vehicles', admin_views.vehicles),
+            path('travelplaces', admin_views.travelplaces),
+            path('bookings', admin_views.bookings),
+            path('availablebookings', admin_views.availablebookings),
         ]))
     ])),
 
