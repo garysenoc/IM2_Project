@@ -1,6 +1,9 @@
 {% extends '../base.html' %}
-{% load static %}
 {% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -79,31 +82,36 @@
                 </button>
             </div>
             <form id="addSubmit" class="needs-validation" novalidate>
+                {% csrf_token%}
+                <!-- {{form|crispy}} -->
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label for="validationCustom00" class="form-label">First name</label>
+                            <!-- <label for="validationCustom00" class="form-label">First name</label>
                             <input type="text" class="form-control" id="validationCustom00" required>
                             <div class="invalid-feedback">
                                 Please provide a first name.
-                            </div>
+                            </div> -->
+                            {{form.firstname|as_crispy_field}}
                         </div>
                         <div class="col-md-4">
-                            <label for="validationCustom01" class="form-label">Middle name</label>
+                            <!-- <label for="validationCustom01" class="form-label">Middle name</label>
                             <input type="text" class="form-control" id="validationCustom01" required>
                             <div class="invalid-feedback">
                                 Please provide a middle name.
-                            </div>
+                            </div> -->
+                            {{form.middlename|as_crispy_field}}
                         </div>
                         <div class="col-md-4">
-                            <label for="validationCustom02" class="form-label">Last name</label>
+                            <!-- <label for="validationCustom02" class="form-label">Last name</label>
                             <input type="text" class="form-control" id="validationCustom02" required>
                             <div class="invalid-feedback">
                                 Please provide a last name.
-                            </div>
+                            </div> -->
+                            {{form.lastname|as_crispy_field}}
                         </div>
                         <div class="col-md-4">
-                            <label for="validationCustomUsername" class="form-label">Username</label>
+                            <!-- <label for="validationCustomUsername" class="form-label">Username</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                                 <input type="text" class="form-control" id="validationCustomUsername"
@@ -111,28 +119,32 @@
                                 <div class="invalid-feedback">
                                     Please choose a username.
                                 </div>
-                            </div>
+                            </div> -->
+                            {{form.username|as_crispy_field}}
                         </div>
                         <div class="col-md-3">
-                            <label for="validationCustom03" class="form-label">Age</label>
+                            <!-- <label for="validationCustom03" class="form-label">Age</label>
                             <input type="number" min="0" class="form-control" id="validationCustom03" required>
                             <div class="invalid-feedback">
                                 Please provide a valid age.
-                            </div>
+                            </div> -->
+                            {{form.age|as_crispy_field}}
                         </div>
                         <div class="col-md-5">
-                            <label for="validationCustom04" class="form-label">Phone number</label>
+                            <!-- <label for="validationCustom04" class="form-label">Phone number</label>
                             <input type="text" class="form-control" id="validationCustom04" required>
                             <div class="invalid-feedback">
                                 Please provide a phone number.
-                            </div>
+                            </div> -->
+                            {{form.phone_number|as_crispy_field}}
                         </div>
                         <div class="col-md-7">
-                            <label for="validationCustom05" class="form-label">Email</label>
+                            <!-- <label for="validationCustom05" class="form-label">Email</label>
                             <input type="email" class="form-control" id="validationCustom05" required>
                             <div class="invalid-feedback">
                                 Please provide a valid email.
-                            </div>
+                            </div> -->
+                            {{form.email|as_crispy_field}}
                         </div>
                     </div>
                 </div>

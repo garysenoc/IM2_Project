@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from ezbook_project.models import User, Company, Driver, Vehicle, Travel_Places, BookTravel, Booking
+from ezbook_project.forms import UserForm
 
 
 base_title = 'EZBook Admin'
@@ -10,8 +11,30 @@ def dashboard(request):
 
 
 def users(request):
+    if request.method != 'POST':
+        form = UserForm()
+    else:
+        form = UserForm(request.POST)
+        if form.is_valid():
+            username = request.POST.get('username')
+            firstname = request.POST.get('firstname')
+            middlename = request.POST.get('middlename')
+            lastname = request.POST.get('lastname')
+            age = request.POST.get('age')
+            phone_number = request.POST.get('phone_number')
+            email = request.POST.get('email')
+            form = User(
+                username=username,
+                firstname=firstname,
+                middlename=middlename,
+                lastname=lastname,
+                age=age,
+                phone_number=phone_number,
+                email=email,
+            )
+            print('HERE: ', form)
     users = User.objects.all()
-    return render(request, 'ezbook_admin/tables/users.html', {'title': f'{base_title} - Users', 'users': users})
+    return render(request, 'ezbook_admin/tables/users.html', {'title': f'{base_title} - Users', 'users': users, 'form': form})
 
 
 def companies(request):
