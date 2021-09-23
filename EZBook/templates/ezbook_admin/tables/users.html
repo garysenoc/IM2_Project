@@ -2,12 +2,23 @@
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Users</h1>
+
+    {% if form.errors %}
+    <script type="text/javascript">
+        $(() => {
+            $('#addModal').modal('show');
+        });
+    </script>
+    {% endif %}
+    {% if isSuccess %}
+    <div class="alert alert-success" role="alert">
+        User added successfully
+    </div>
+    {% endif %}
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -72,7 +83,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -81,14 +92,16 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form id="addSubmit" class="needs-validation" novalidate>
+            <form id="addSubmit" class="needs-validation" action="{% url 'ezbook:users' %}" method="post"
+                enctype="multipart/form-data" novalidate>
                 {% csrf_token%}
                 <!-- {{form|crispy}} -->
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-md-4">
                             <!-- <label for="validationCustom00" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="validationCustom00" required>
+                            <input type="text" class="form-control" id="validationCustom00"
+                                name="{{form.firstname.name}}" required>
                             <div class="invalid-feedback">
                                 Please provide a first name.
                             </div> -->

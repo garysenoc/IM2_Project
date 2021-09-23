@@ -19,13 +19,14 @@ urlpatterns = [
     path('ezbook_admin/', include([
         path('', admin_views.dashboard, name='ezbook_admin'),
         path('tables/', include([
-            path('users', admin_views.users, name='users'),
-            path('companies', admin_views.companies, name='companies'),
-            path('drivers', admin_views.drivers, name='drivers'),
-            path('vehicles', admin_views.vehicles, name='vehicles'),
-            path('travelplaces', admin_views.travelplaces, name='travelplaces'),
-            path('bookings', admin_views.bookings, name='bookings'),
-            path('availablebookings', admin_views.availablebookings,
+            path('users', admin_views.Users.as_view(), name='users'),
+            path('companies', admin_views.Companies.as_view(), name='companies'),
+            path('drivers', admin_views.Drivers.as_view(), name='drivers'),
+            path('vehicles', admin_views.Vehicles.as_view(), name='vehicles'),
+            path('travelplaces', admin_views.Travelplaces.as_view(),
+                 name='travelplaces'),
+            path('bookings', admin_views.Bookings.as_view(), name='bookings'),
+            path('availablebookings', admin_views.Availablebookings.as_view(),
                  name='availablebookings'),
         ]))
     ])),

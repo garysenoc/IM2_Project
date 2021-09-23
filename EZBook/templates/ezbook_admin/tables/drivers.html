@@ -1,10 +1,24 @@
 {% extends '../base.html' %}
-{% load static %}
 {% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">Drivers</h1>
+
+  {% if form.errors %}
+  <script type="text/javascript">
+    $(() => {
+      $('#addModal').modal('show');
+    });
+  </script>
+  {% endif %}
+  {% if isSuccess %}
+  <div class="alert alert-success" role="alert">
+    Driver added successfully
+  </div>
+  {% endif %}
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
@@ -60,20 +74,31 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addModalLabel">Add Company</h5>
+        <h5 class="modal-title" id="addModalLabel">Add Driver</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <form id="addSubmit" class="needs-validation" novalidate>
+      <form id="addSubmit" class="needs-validation" action="{% url 'ezbook:drivers' %}" method="post"
+        enctype="multipart/form-data" novalidate>
+        {% csrf_token%}
         <div class="modal-body">
           <div class="row g-3">
-            <div class="col-md-12">
-              <label for="validationCustom00" class="form-label">Driver name</label>
+            <div class="col-md-6">
+              <!-- <label for="validationCustom00" class="form-label">Driver name</label>
               <input type="text" class="form-control" id="validationCustom00" required>
               <div class="invalid-feedback">
                 Please provide a driver name.
-              </div>
+              </div> -->
+              {{form.driver_fullname|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+              <!-- <label for="validationCustom00" class="form-label">Company</label>
+              <input type="text" class="form-control" id="validationCustom00" required>
+              <div class="invalid-feedback">
+                Please provide a driver name.
+              </div> -->
+              {{form.company_name|as_crispy_field}}
             </div>
           </div>
         </div>

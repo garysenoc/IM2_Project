@@ -1,10 +1,24 @@
 {% extends '../base.html' %}
-{% load static %}
 {% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800">Vehicles</h1>
+
+  {% if form.errors %}
+  <script type="text/javascript">
+    $(() => {
+      $('#addModal').modal('show');
+    });
+  </script>
+  {% endif %}
+  {% if isSuccess %}
+  <div class="alert alert-success" role="alert">
+    Vehicle added successfully
+  </div>
+  {% endif %}
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
@@ -61,6 +75,66 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Add Vehicle</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form id="addSubmit" class="needs-validation" action="{% url 'ezbook:vehicles' %}" method="post"
+        enctype="multipart/form-data" novalidate>
+        {% csrf_token%}
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-12">
+              <!-- <label for="validationCustom00" class="form-label">Vehicle plate</label>
+              <input type="text" class="form-control" id="validationCustom00" required>
+              <div class="invalid-feedback">
+                Please provide a company name.
+              </div> -->
+              {{form.vehicle_plate|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+              {{form.company_id|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+              <!-- <label for="validationCustom04" class="form-label">Vehicle capacity</label>
+              <input type="text" class="form-control" id="validationCustom04" required>
+              <div class="invalid-feedback">
+                Please provide a phone number.
+              </div> -->
+              {{form.vehicle_driver_id|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+              <!-- <label for="validationCustom05" class="form-label">Vehicle Type</label>
+              <input type="email" class="form-control" id="validationCustom05" required>
+              <div class="invalid-feedback">
+                Please provide a valid email.
+              </div> -->
+              {{form.vehicle_capacity|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+              <!-- <label for="validationCustom00" class="form-label">Company</label>
+              <input type="text" class="form-control" id="validationCustom00" required>
+              <div class="invalid-feedback">
+                Please provide a driver name.
+              </div> -->
+              {{form.vehicle_type|as_crispy_field}}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
   $(() => {
     $('#bootstrapdatatable').DataTable({
