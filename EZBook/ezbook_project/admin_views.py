@@ -4,13 +4,32 @@ from ezbook_project.models import User, Company, Driver, Vehicle, Travel_Places,
 from ezbook_project.forms import UserForm, CompanyForm, DriverForm, VehicleForm, Travel_PlacesForm, BookTravelForm, BookingForm
 from datetime import date
 import datetime
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 base_title = 'EZBook Admin'
 
 
 def dashboard(request):
-    return render(request, 'ezbook_admin/index.html', {'title': f'{base_title} - Dashboard'})
+    count = {
+        "user_count": User.objects.all().count(),
+        "bookings_count": Booking.objects.all().count(),
+        "company_count": Company.objects.all().count(),
+        "driver_count": Driver.objects.all().count(),
+        "vehicle_count": Vehicle.objects.all().count(),
+    }
+
+    data = Booking.objects.raw(
+        "SELECT 1 as id, COUNT(ID) as total, booking_date FROM heroku_edd82c657812381.ezbook_project_booking group by booking_date")
+
+    date = []
+    num = []
+    for i in data:
+        date.append((i.booking_date))
+        num.append(i.total)
+
+    return render(request, 'ezbook_admin/index.html', {'title': f'{base_title} - Dashboard', 'count': count, 'date': json.dumps(date, cls=DjangoJSONEncoder), 'num': json.dumps(num)})
 
 
 class Users(View):
